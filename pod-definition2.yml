@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgress-pod
+  labels: 
+    author: eccentric
+    type: db
+spec: 
+  containers:
+    - name: mypostgres
+      image: postgres
+      env:
+        - name: POSTGRES_PASSWORD
+          value: eccentric
+        - name: POSTGRES_DB
+          value: mydb
+        - name: POSTGRES_USER
+          value: myuser
+...

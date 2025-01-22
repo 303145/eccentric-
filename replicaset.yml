@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: tomcat-rs
+  labels:
+    type: appserver
+    author: eccentric
+spec:
+  replicas: 2
+  selector:
+    matchLabels: 
+      type: appserver 
+  template:
+    metadata: 
+      name: tomcat-pod
+      labels: 
+        type: appserver
+        author: eccentric
+    spec: 
+      containers:
+        - name: mytomcat
+          image: tomcat
+          ports:
+            - containerPort: 8080
+              hostPort: 9090
+
+
+...

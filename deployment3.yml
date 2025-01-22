@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghost-deployment
+  namespace: eccentric-ns
+  labels:
+    type: cms
+    author: eccentric
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      type: cms
+  template:
+    metadata:
+      name: ghost-pod
+      labels:
+        type: cms
+        author: eccentric
+    spec:
+      containers:
+        - name: myghost
+          image: ghost
+          env:
+            - name: NODE_ENV
+              value: development
+          ports:
+            - containerPort: 2368
+              hostPort: 3001
+
+
+...
