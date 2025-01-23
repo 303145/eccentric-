@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: result-app-deployment
+  labels: 
+    type: result-app
+    author: eccentric
+spec:
+  replicas: 2
+  selector:
+    matchLabels: 
+      type: result-app
+      author: eccentric
+  template:
+    metadata:
+      name: result-app-pod
+      labels:
+        type: result-app
+        author: eccentric
+    spec:
+      containers: 
+        - name: my-result-app
+          image: dockersamples/examplevotingapp_result
+
+          
+...

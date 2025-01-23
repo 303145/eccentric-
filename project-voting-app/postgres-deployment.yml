@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  labels:
+    type: postgres-db
+    author: eccentric
+spec:
+  selector:
+    matchLabels:
+      type: postgres-db
+      author: eccentric
+  template:
+    metadata:
+      name: postgres-pod
+      labels:
+        type: postgres-db
+        author: eccentric
+    spec:
+      containers:
+        - name: mypostgres
+          image: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              value: eccentric
+
+...

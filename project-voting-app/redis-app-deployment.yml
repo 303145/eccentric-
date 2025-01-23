@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: redis-deployment
+  labels:
+    type: redis-db
+    author: eccentric
+spec: 
+  selector:
+    matchLabels:
+      type: redis-db
+      author: eccentric
+  template:
+    metadata:
+      name: redis-pod
+      labels:
+        type: redis-db
+        author: eccentric
+    spec:
+      containers:
+        - name: my-redis-app
+          image: redis
+
+
+...

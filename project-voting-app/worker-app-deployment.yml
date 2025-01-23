@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: worker-app-deployment
+  labels:
+    type: worker-app
+    author: eccentric
+spec:
+  selector:
+    matchLabels:
+      type: worker-app
+      author: eccentric
+  template:
+    metadata:
+      name: worker-app-pod
+      labels:
+        type: worker-app
+        author: eccentric
+    spec:
+      containers:
+        - name: my-voting-app
+          image: dockersamples/examplevotingapp_worker 
+...
