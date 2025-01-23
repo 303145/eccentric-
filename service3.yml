@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: postgress-service
+  labels:
+    type: db
+    author: eccentric
+spec:
+  ports:
+    - targetPort: 5432
+      port: 5432
+  selector:
+    type: db
+    author: eccentric
+...

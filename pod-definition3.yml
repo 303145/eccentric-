@@ -5,12 +5,15 @@ metadata:
   name: mysql-pod
   labels:
     author: eccentric
-    type: mydb
+    type: db
 spec:
   containers:
     - name: mydb
       image: mysql:8.0
       env:
         - name: MYSQL_ROOT_PASSWORD
-          value: eccentric
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: a
 ...
