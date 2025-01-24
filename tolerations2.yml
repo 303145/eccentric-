@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deployment
+  labels: 
+    type: appserver
+    author: eccentric
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: appserver
+      author: eccentric
+  template:
+    metadata:
+      name: tomcat-pod
+      labels: 
+        type: appserver
+        author: eccentric
+    spec:
+      containers:
+        - name: mytomcat
+          image: tomee
+      tolerations:
+        - key: slave2
+          value: eccentric2
+          operator: Equal
+          effect: NoSchedule
+
+...
