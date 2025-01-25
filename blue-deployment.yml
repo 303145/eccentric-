@@ -2,14 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: blue-deployment
   labels: 
     author: eccentric
     type: proxy-server
 spec:
   replicas: 2
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
       type: proxy-server
@@ -21,7 +19,7 @@ spec:
         type: proxy-server
     spec: 
       containers:
-        - name: mynginx
+        - name: nginx
           image: nginx:1.25
           ports: 
             - containerPort: 80

@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-deployment
+  labels:
+    type: php-apache
+    author: eccentric
+spec:
+  selector:
+    matchLabels:
+      type: php-apache
+      author: eccentric
+  template:
+    metadata:
+      name: php-pod
+      labels: 
+        type: php-apache
+        author: eccentric
+    spec:
+      containers:
+        - name: php-apache
+          image: intelliqit/php
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "200m"
+            limits:
+              cpu: "400m" 
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: php-service
+  labels:
+    type: php-apache
+    author: eccentric
+spec:
+  ports:
+    - port: 80
+  selector:
+    type: php-apache
+    author: eccentric
+... 
